@@ -1,34 +1,28 @@
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
-const logger = require('morgan');
+const logger = require('morgan')
+const connectDB = require("./config/db");
 require('dotenv').config();
-
-// Connect to the database
-require('./config/database');
 
 const app = express();
 
+// Connect Database
+connectDB();
 app.use(logger('dev'));
 app.use(express.json());
 
-// Configure both serve-favicon & static middleware
-// to serve from the production 'build' folder
-app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
-app.use(express.static(path.join(__dirname, 'build')));
+// Init middleware
+app.use(express.json({ msg: "Welcome" }));
 
-// Put API routes here, before the "catch all" route
+app.get("/", (req, res) => res.json({ msg: "Welcome" }));
 
-// The following "catch all" route (note the *) is necessary
-// to return the index.html on all non-AJAX requests
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+app.use("/api/user", require("./routes/user"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/gratitude", require("./routes/gratitude"));
+app.use("/api/affirmation", require("./routes/affirmation"));
 
-// Configure to use port 3001 instead of 3000 during
-// development to avoid collision with React's dev server
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
-app.listen(port, function() {
-  console.log(`Express app running on port ${port}`)
-});
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

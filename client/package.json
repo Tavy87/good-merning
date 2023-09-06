@@ -1,20 +1,18 @@
 {
-  "name": "good-merning",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "bootstrap": "^5.3.1",
-    "express": "^4.18.2",
-    "mongoose": "^7.4.5",
-    "morgan": "^1.10.0",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.8.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "serve-favicon": "^2.5.0"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0",
+    "react-transition-group": "^4.3.0",
+    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,10 +21,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -39,5 +34,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
